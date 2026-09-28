@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Sailor Health Claim Denial Triage Tool</title>
+<link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <span class="eyebrow">Sailor Health</span>
+        <h1>Claim Denial Triage Tool</h1>
+      </div>
+      <nav>
+        <a href="/" class="active">Denial Triage</a>
+        <a href="/about">About / FAQ</a>
+      </nav>
+    </aside>
+
+    <div class="main-col">
+      <main>
+        <div class="disclaimer">
+          Prototype for a case study. References synthetic data, not Sailor Health's actual
+          claims or denial history.
+        </div>
+
+        <div class="chat-log" id="chat-log"></div>
+      </main>
+
+      <div class="upload-bar">
+        <div class="inner">
+          <div id="dropzone">
+            Drag a denial notice PDF here, or click to choose a file
+            <input type="file" id="file-input" accept="application/pdf" />
+          </div>
+          <button class="upload-btn" id="upload-btn">Upload</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

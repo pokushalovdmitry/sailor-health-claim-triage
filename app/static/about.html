@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>About -- Sailor Health Claim Denial Triage Tool</title>
+<link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <span class="eyebrow">Sailor Health</span>
+        <h1>Claim Denial Triage Tool</h1>
+      </div>
+      <nav>
+        <a href="/">Denial Triage</a>
+        <a href="/about" class="active">About / FAQ</a>
+      </nav>
+    </aside>
+
+    <div class="main-col">
+      <main class="faq-page">
+        <p class="callout">
+          <strong>This tool is a prototype.</strong> Every number behind it comes from a
+          synthetic, illustrative dataset -- not Sailor Health's real claims history. See
+          the last question below for more on that.
+        </p>
+
+        <div class="accordion">
+          <div class="accordion-item">
+            <button class="accordion-question" aria-expanded="false">
+              What is this tool?
+              <span class="chevron">+</span>
+            </button>
+            <div class="accordion-answer">
+              <div class="accordion-answer-inner">
+                <p>Most denied claims that never get appealed weren't hard cases. They were
+                  just never looked at closely enough to decide if pursuing them was worth
+                  the time. Industry data backs this up: appealed denials win far more often
+                  than the low overall appeal rate would suggest, which means the real
+                  problem isn't winning, it's deciding.</p>
+                <p>This tool reads a denial notice and tells you, in plain language with real
+                  numbers behind it, whether an appeal is worth pursuing and what to expect
+                  if you do.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <button class="accordion-question" aria-expanded="false">
+              What do I need to give it?
+              <span class="chevron">+</span>
+            </button>
+            <div class="accordion-answer">
+              <div class="accordion-answer-inner">
+                <p>Just the denial notice itself, as a PDF. Upload it and the tool takes it
+                  from there.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <button class="accordion-question" aria-expanded="false">
+              How does it read the notice?
+              <span class="chevron">+</span>
+            </button>
+            <div class="accordion-answer">
+              <div class="accordion-answer-inner">
+                <p>Denial notices look different from every payer. Some are dense letters,
+                  some are structured tables, and the wording varies even when the reason is
+                  the same. Only the denial codes themselves are standardized, not the
+                  layout.</p>
+                <p>So the tool reads for meaning instead of expecting a fixed template. It
+                  pulls the denial reason, payer, plan, dates, and billed amount regardless
+                  of how the notice is laid out.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <button class="accordion-question" aria-expanded="false">
+              How does the prediction work?
+              <span class="chevron">+</span>
+            </button>
+            <div class="accordion-answer">
+              <div class="accordion-answer-inner">
+                <p>Three steps. First, the tool extracts the key details from the notice:
+                  denial reason, payer, plan, dates, and billed amount. Second, it searches
+                  the comparison dataset for past denials that match those details closely
+                  and pulls out the subset that looks most like this one. Third, it uses
+                  that subset to estimate the odds of winning, the likely payout, and the
+                  cost and time involved, and turns that into a recommendation.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <button class="accordion-question" aria-expanded="false">
+              What's in the comparison dataset?
+              <span class="chevron">+</span>
+            </button>
+            <div class="accordion-answer">
+              <div class="accordion-answer-inner">
+                <p>A set of past denials and how they turned out. Each record includes the
+                  denial reason, the payer and plan, whether an appeal was filed and won,
+                  how much came back when it won, how long it took, and what it cost to
+                  pursue.</p>
+                <p>This is the dataset the second step above searches. A new claim gets
+                  matched against past denials with the same denial type, payer, plan, and
+                  whether the service happened this year or last year, and the estimate
+                  comes from that matched group.</p>
+                <p>Right now, this dataset is synthetic. It was built to behave the way real
+                  claims data behaves (technical errors resolve faster and win more often
+                  than clinical disputes, for example) but it isn't Sailor Health's actual
+                  claims history. More on this in the last question below.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <button class="accordion-question" aria-expanded="false">
+              How is the recommendation actually calculated?
+              <span class="chevron">+</span>
+            </button>
+            <div class="accordion-answer">
+              <div class="accordion-answer-inner">
+                <p>The tool multiplies the billed amount by the win probability and the
+                  payout percentage to get an expected dollar recovery, subtracts the
+                  typical cost of pursuing an appeal like this one, and adjusts for how long
+                  that money is expected to take to arrive. What's left is the net value of
+                  pursuing the appeal, which drives the recommendation.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <button class="accordion-question" aria-expanded="false">
+              What is NPV, and why does the tool show it?
+              <span class="chevron">+</span>
+            </button>
+            <div class="accordion-answer">
+              <div class="accordion-answer-inner">
+                <p>NPV stands for net present value. A dollar today is worth more than a
+                  dollar in five months, since money now can be used now. The tool discounts
+                  the expected payout by how long the appeal is likely to take, so a claim
+                  that pays well but takes a long time doesn't look the same as one that
+                  pays the same and resolves fast.</p>
+                <p>The discount rate is fixed at 10% annualized for this prototype.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <button class="accordion-question" aria-expanded="false">
+              Why would the tool ever say not to pursue?
+              <span class="chevron">+</span>
+            </button>
+            <div class="accordion-answer">
+              <div class="accordion-answer-inner">
+                <p>Because pursuing an appeal has a real cost, and not every appeal is worth
+                  that cost. A low dollar claim, or one from a category with a low historical
+                  win rate, can end up with a net value close to zero or negative once the
+                  cost of pursuing it is subtracted. That's the tool working as intended,
+                  not a failure. Its entire purpose is making that call quickly and
+                  consistently instead of leaving it to whoever happens to be looking at the
+                  claim that day.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <button class="accordion-question" aria-expanded="false">
+              What if the recommendation is positive but the timing is tight?
+              <span class="chevron">+</span>
+            </button>
+            <div class="accordion-answer">
+              <div class="accordion-answer-inner">
+                <p>Some claims have strong economics but a short window to file, based on the
+                  payer's appeal deadline. Rather than quietly turning that into a "don't
+                  pursue," the tool flags it separately: pursue, but file quickly. The
+                  deadline itself comes from a separate reference table of payer rules, not
+                  from the notice, since appeal deadlines are usually a matter of payer
+                  policy rather than something printed on the document.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <button class="accordion-question" aria-expanded="false">
+              What happens if I upload something that isn't a denial notice?
+              <span class="chevron">+</span>
+            </button>
+            <div class="accordion-answer">
+              <div class="accordion-answer-inner">
+                <p>The tool checks first. If the document is missing a denial reason, missing
+                  payer information, or clearly isn't a denial notice at all, it says so
+                  directly instead of guessing and giving you a result that doesn't mean
+                  anything.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <button class="accordion-question" aria-expanded="false">
+              Is any of this tuned to Sailor Health's real numbers yet?
+              <span class="chevron">+</span>
+            </button>
+            <div class="accordion-answer">
+              <div class="accordion-answer-inner">
+                <p>No. Every win rate, payout percentage, appeal cost, and filing deadline in
+                  this prototype is synthetic, built to be internally consistent rather than
+                  measured from real claims. The discount rate and the minimum dollar
+                  threshold for a "pursue" recommendation are fixed for now rather than
+                  adjustable.</p>
+                <p>The next step is integrating Sailor Health's actual denial data in place
+                  of this synthetic dataset, and expanding the number of parameters the tool
+                  searches on to get a more specific match for each claim. The way the tool
+                  reads notices and runs the math would stay the same. Only what it's
+                  comparing against, and how finely it can match, would improve.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script src="/static/faq.js"></script>
+</body>
+</html>

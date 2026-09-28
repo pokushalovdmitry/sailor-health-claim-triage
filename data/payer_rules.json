@@ -1,0 +1,47 @@
+[
+  {
+    "Payer": "Cascade Health Partners",
+    "Plan": "Advantage Plus",
+    "Appeal Filing Deadline (Days from Denial Date)": 90
+  },
+  {
+    "Payer": "Cascade Health Partners",
+    "Plan": "Advantage Choice",
+    "Appeal Filing Deadline (Days from Denial Date)": 60
+  },
+  {
+    "Payer": "Cascade Health Partners",
+    "Plan": "Advantage Select",
+    "Appeal Filing Deadline (Days from Denial Date)": 15
+  },
+  {
+    "Payer": "Northlake Medicare Solutions",
+    "Plan": "Complete Care",
+    "Appeal Filing Deadline (Days from Denial Date)": 120
+  },
+  {
+    "Payer": "Northlake Medicare Solutions",
+    "Plan": "Essential Care",
+    "Appeal Filing Deadline (Days from Denial Date)": 75
+  },
+  {
+    "Payer": "Northlake Medicare Solutions",
+    "Plan": "Premier Care",
+    "Appeal Filing Deadline (Days from Denial Date)": 30
+  },
+  {
+    "Payer": "Summit Point Health",
+    "Plan": "Value Plan",
+    "Appeal Filing Deadline (Days from Denial Date)": 60
+  },
+  {
+    "Payer": "Summit Point Health",
+    "Plan": "Standard Plan",
+    "Appeal Filing Deadline (Days from Denial Date)": 10
+  },
+  {
+    "Payer": "Summit Point Health",
+    "Plan": "Enhanced Plan",
+    "Appeal Filing Deadline (Days from Denial Date)": 105
+  }
+]
