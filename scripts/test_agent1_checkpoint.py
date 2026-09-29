@@ -24,7 +24,7 @@ SAMPLE_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file
 # scripts/generate_sample_claims.py for how these were built and
 # tests/test_agent2.py for the Agent-2-facing shape of the same claims).
 GROUND_TRUTH = {
-    "sample_claim_1_technical_strong.pdf": {
+    "sample_claim_1_pursue.pdf": {
         "denial_reason_code": "CO-140",
         "denial_reason_category": "Technical",
         "payer": "Northlake Medicare Solutions",
@@ -34,7 +34,7 @@ GROUND_TRUTH = {
         "billed_amount": 315.00,
         "date_of_service_bucket": "This Year (2026)",
     },
-    "sample_claim_2_clinical_weak.pdf": {
+    "sample_claim_2_abandon.pdf": {
         "denial_reason_code": "CO-50",
         "denial_reason_category": "Clinical",
         "payer": "Cascade Health Partners",
@@ -44,7 +44,7 @@ GROUND_TRUTH = {
         "billed_amount": 340.00,
         "date_of_service_bucket": "Prior Year (2025)",
     },
-    "sample_claim_3_high_dollar.pdf": {
+    "sample_claim_3_pursue.pdf": {
         "denial_reason_code": "CO-16 / N657",
         "denial_reason_category": "Clinical",
         "payer": "Summit Point Health",
@@ -54,7 +54,7 @@ GROUND_TRUTH = {
         "billed_amount": 500.00,
         "date_of_service_bucket": "This Year (2026)",
     },
-    "sample_claim_4_low_dollar.pdf": {
+    "sample_claim_4_abandon.pdf": {
         "denial_reason_code": "CO-18",
         "denial_reason_category": "Technical",
         "payer": "Cascade Health Partners",
@@ -64,7 +64,7 @@ GROUND_TRUTH = {
         "billed_amount": 115.00,
         "date_of_service_bucket": "Prior Year (2025)",
     },
-    "sample_claim_5_deadline_infeasible.pdf": {
+    "sample_claim_5_deadline.pdf": {
         "denial_reason_code": "CO-197",
         "denial_reason_category": "Technical",
         "payer": "Summit Point Health",

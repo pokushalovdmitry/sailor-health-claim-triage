@@ -22,11 +22,11 @@ from app.chat_formatter import build_chat_response  # noqa: E402
 SAMPLE_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "sample-data")
 
 SAMPLES = [
-    "sample_claim_1_technical_strong.pdf",
-    "sample_claim_2_clinical_weak.pdf",
-    "sample_claim_3_high_dollar.pdf",
-    "sample_claim_4_low_dollar.pdf",
-    "sample_claim_5_deadline_infeasible.pdf",
+    "sample_claim_1_pursue.pdf",
+    "sample_claim_2_abandon.pdf",
+    "sample_claim_3_pursue.pdf",
+    "sample_claim_4_abandon.pdf",
+    "sample_claim_5_deadline.pdf",
 ]
 
 
