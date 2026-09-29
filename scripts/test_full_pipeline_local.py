@@ -57,9 +57,9 @@ def main():
         print()
 
     print("=" * 88)
-    print("sample_not_a_denial_notice.pdf (should be REJECTED, not extracted)")
+    print("sample_negative_control.pdf (should be REJECTED, not extracted)")
     print("=" * 88)
-    path = os.path.join(SAMPLE_DIR, "sample_not_a_denial_notice.pdf")
+    path = os.path.join(SAMPLE_DIR, "sample_negative_control.pdf")
     with open(path, "rb") as f:
         pdf_bytes = f.read()
     extraction = run_agent1(pdf_bytes)
